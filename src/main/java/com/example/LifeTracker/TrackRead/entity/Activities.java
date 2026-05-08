@@ -29,10 +29,10 @@ public class Activities {
     @Column(nullable = false)
     private Long acEnd;
     @Column(nullable = false)
-    private LocalDate nowDate;
+    private LocalDate targetDate;
     @Column(nullable = false)
     private Long weekId;
     @Column(nullable = false)
-    private Long MonthId;
+    private Long monthId;
 
 }

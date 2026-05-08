@@ -19,14 +19,21 @@ public class TrackReadService {
     @Autowired
     private TrackReadRepository trackReadRepository;
 
-    // 현재 날짜 data요청
+    // 현재 날짜 AND 유저 ID - data요청
     public List<DailyTrackReadForm> nowIndex(Long userId) {
-        LocalDate nowDate = LocalDate.now();
-        List<Activities> activities = trackReadRepository.findByUserIdAndNowDate(userId, nowDate);
+        LocalDate targetDate = LocalDate.now();
+        List<Activities> activities = trackReadRepository.findByUserIdAndTargetDate(userId, targetDate);
+        log.info("현재 날짜 data 요청: {}", activities.toString());
         return activities.stream()
                 .map(DailyTrackReadForm::new) // 각 Activities 객체를 DTO로 변환
                 .toList(); // 자바 16 이상 기준 (이하는 .collect(Collectors.toList()))
     }
-    // 특정 날짜 data 요청
-
+    // 특정 날짜 AND 유저 ID - data요청
+    public List<DailyTrackReadForm> targetDateIndex(LocalDate targetDate, Long userId) {
+        List<Activities> activities = trackReadRepository.findByUserIdAndTargetDate(userId,targetDate);
+        log.info("특정 날짜 data 요청: {}", activities.toString());
+        return activities.stream()
+                .map(DailyTrackReadForm::new)
+                .toList();
+    }
 }

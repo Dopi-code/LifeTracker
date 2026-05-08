@@ -21,7 +21,7 @@ public class DailyTrackReadForm {
     private String acName;
     private Long acStart;
     private Long acEnd;
-    private LocalDate nowDate;
+    private LocalDate targetDate;
 
     // Activities 엔티티를 직접 받는 생성자
     public DailyTrackReadForm(Activities entity) {
@@ -31,6 +31,6 @@ public class DailyTrackReadForm {
         this.acName = entity.getAcName();
         this.acStart = entity.getAcStart();
         this.acEnd = entity.getAcEnd();
-        this.nowDate = entity.getNowDate();
+        this.targetDate = entity.getTargetDate();
     }
 }

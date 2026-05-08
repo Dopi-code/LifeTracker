@@ -14,18 +14,18 @@ public class TrackReadApiController {
     @Autowired
     private TrackReadService trackReadService;
 
-    // 현재 날짜 활동 기록 조회
+    // 현재 날짜 AND 유저 ID - data요청
     @GetMapping("/activities/now/{userId}")
     public List<DailyTrackReadForm> nowIndex(@PathVariable Long userId) {
         return trackReadService.nowIndex(userId);
     }
 
-    // 특정 날짜 활동 기록 조회
-//    @GetMapping("/activities/{targetDate}/{userId}")
-//    public List<DailyTrackReadForm> targetDateIndex(
-//            @PathVariable LocalDate targetDate,
-//            @PathVariable Long userId) {
-//        trackReadService.targetDateIndex(targetDate, userId);
-//        return null;
-//    }
+    // 특정 날짜 AND 유저 ID - data요청
+    // targetDate는 YYYY-MM-DD형식으로 받는다
+    @GetMapping("/activities/{targetDate}/{userId}")
+    public List<DailyTrackReadForm> targetDateIndex(
+            @PathVariable LocalDate targetDate,
+            @PathVariable Long userId) {
+        return trackReadService.targetDateIndex(targetDate, userId);
+    }
 }
