@@ -1,3 +1,4 @@
+    // 아래 코드는 HTML의 <script>에서 JS 하이라이팅이 되지 않아 임시로 적는 곳이다.
     // 24시간 라벨 생성
     const hourLabels = document.getElementById('hourLabels');
     for (let i = 0; i < 24; i++) {
@@ -26,9 +27,9 @@
     function colorActivity(acStart, acEnd, acColor) {
         const startIndex = convertTimeToIndex(acStart);
         const endIndex = convertTimeToIndex(acEnd);
-        const slot = document.querySelectorAll('.time-slot') // 144개의 셀들
+        const slots = document.querySelectorAll('.time-slot'); // 144개의 셀들
 
-        for (i=startIndex; i<=endIndex; i++){
+        for (let i=startIndex; i<endIndex; i++){
             if (slots[i]) {
                 slots[i].style.backgroundColor = acColor;
             }
@@ -36,7 +37,7 @@
     }
 
     // 기능 실행
-    {{#Activities}}
-    colorActivity({{acStart}}, {{acEnd}}, {{acColor}})
-    {{/Activities}}
-    colorActivityRange("12:00", "13:30", "#ffa07a")
+    colorActivity({{acStart}}, {{acEnd}}, {{acColor}});
+    console.log("acStart :",acStart);
+    console.log("acEnd :",acEnd);
+    colorActivityRange("12:00", "13:30", "#ffa07a");
