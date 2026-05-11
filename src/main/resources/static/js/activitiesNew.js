@@ -23,3 +23,20 @@
     }
 
     // 해당 인덱스의 시간표 셀의 색깔을 바꾸는 기능
+    function colorActivity(acStart, acEnd, acColor) {
+        const startIndex = convertTimeToIndex(acStart);
+        const endIndex = convertTimeToIndex(acEnd);
+        const slot = document.querySelectorAll('.time-slot') // 144개의 셀들
+
+        for (i=startIndex; i<=endIndex; i++){
+            if (slots[i]) {
+                slots[i].style.backgroundColor = acColor;
+            }
+        }
+    }
+
+    // 기능 실행
+    {{#Activities}}
+    colorActivity({{acStart}}, {{acEnd}}, {{acColor}})
+    {{/Activities}}
+    colorActivityRange("12:00", "13:30", "#ffa07a")
