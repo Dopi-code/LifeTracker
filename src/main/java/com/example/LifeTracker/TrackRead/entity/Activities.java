@@ -34,5 +34,6 @@ public class Activities {
     private Long weekId;
     @Column(nullable = false)
     private Long monthId;
-
+    @Column(nullable = false)
+    private String acColor;
 }

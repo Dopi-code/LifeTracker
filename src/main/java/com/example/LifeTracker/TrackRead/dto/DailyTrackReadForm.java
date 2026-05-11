@@ -22,6 +22,7 @@ public class DailyTrackReadForm {
     private Long acStart;
     private Long acEnd;
     private LocalDate targetDate;
+    private String acColor;
 
     // Activities 엔티티를 직접 받는 생성자
     public DailyTrackReadForm(Activities entity) {
@@ -32,5 +33,6 @@ public class DailyTrackReadForm {
         this.acStart = entity.getAcStart();
         this.acEnd = entity.getAcEnd();
         this.targetDate = entity.getTargetDate();
+        this.acColor = entity.getAcColor();
     }
 }
