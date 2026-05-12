@@ -5,11 +5,13 @@ import com.example.LifeTracker.TrackRead.entity.Activities;
 import com.example.LifeTracker.TrackRead.service.TrackReadService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.web.ProjectedPayload;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,12 +24,27 @@ import java.util.List;
 public class TrackController {
     @Autowired
     TrackReadService trackReadService;
-    //- 메인 선택 화면
+
+    //- 메인으로 날짜 정보와 함께 redirect 선택 화면
     @GetMapping("/lifeTracker/main/{userId}")
-    public String mainPage(@PathVariable Long userId, Model model) {
+    public String mainPageRedirect(@PathVariable Long userId,
+                                   RedirectAttributes rttr) {
+        String targetDate = LocalDate.now().toString();
+        log.info("main페이지로 리다이렉트 시도. 날짜: {}, 유저ID: {}", targetDate, userId);
+        rttr.addAttribute("targetDate", targetDate);
+        rttr.addAttribute("userId", userId);
+        return "redirect:/lifeTracker/main/{targetDate}/{userId}";
+    }
+
+    //- 메인 선택 화면
+    @GetMapping("/lifeTracker/main/{targetDate}/{userId}")
+    public String mainPage(@PathVariable Long userId,
+                           @PathVariable LocalDate targetDate,
+                           Model model) {
         model.addAttribute("userId", userId);
         return "/mainPage";
     }
+
 //    //- 활동 기록 페이지: 조회시 현재 날짜로 조회
     // 문제가 있어 일단 대기
 //    @GetMapping("/lifeTracker/new/{userId}")
@@ -39,15 +56,17 @@ public class TrackController {
 //        return "/new";
 //    }
 
-    //- 특정 날짜 활동 기록 페이지
+    //- 특정 날짜의 활동 기록 페이지
     @GetMapping("/lifeTracker/new/{targetDate}/{userId}")
     public String newActivities(@PathVariable Long userId,
                                 @PathVariable LocalDate targetDate,
-                                Model model) {
+                                Model model,
+                                RedirectAttributes rttr) {
         List<DailyTrackReadForm> dailyTrackReadFormList = trackReadService.targetDateIndex(targetDate, userId);
         model.addAttribute("userId", userId);
         model.addAttribute("DailyTrackReadFormList", dailyTrackReadFormList);
-        log.info("뭔가가 되고있다... {}", dailyTrackReadFormList.toString());
+        log.info("new 뷰 페이지 호출");
+        rttr.addAttribute("targetDate", targetDate);
         return "/new";
     }
     //- 활동 기록 페이지: 데이터 추가
