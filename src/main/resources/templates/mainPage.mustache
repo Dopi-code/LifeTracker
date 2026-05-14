@@ -1,7 +1,9 @@
 {{>layouts/header}}
 <!--Content-->
 {{#userId}}
-<h1>{{userId}}님, 라이프 트래커에 오신것을 환영합니다!</h1>
+<h1>{{userId}}님 환영합니다!</h1>
 {{/userId}}
-<h2>라이프 트래커 메인 화면입니다.</h2>
+{{#targetDate}}
+<h2>여기는 메인 화면입니다. 현재 설정 날짜는 {{targetDate}}입니다! </h2>
+{{/targetDate}}
 {{>layouts/footer}}
