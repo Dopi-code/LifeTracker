@@ -29,3 +29,15 @@ TrackController는 다음과 같은 요구사항을 충족한다.
 - 활동 기록 페이지: 데이터 수정/삭제(수정 시 전체 덮어씌우기 예정)
 
 - 통계 페이지: ...
+------------------데이터 처리 과정--------------------------
+1. '활동 기록 추가' 페이지(입력)
+<뷰 페이지>new.mustache에서
+targetDate/userId/Long acStart/Long acEnd
+/String acName/acColor/ctgId/(id) 데이터 저장 요청
+<DTO> DailyTrackWriteForm타입 form데이터로 저장
+<Entity> Activities타입 activities로 변환
+<Repository> TrackWriteRepository에서 저장
+
+2. '활동 기록 추가' 페이지(출력)
+(테스트용)<DB> H2에서 데이터 저장
+<Entity>

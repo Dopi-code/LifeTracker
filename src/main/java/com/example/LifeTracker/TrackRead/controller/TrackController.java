@@ -55,9 +55,9 @@ public class TrackController {
         return "/mainPage";
     }
 
-    //- 특정 날짜의 활동 기록 페이지
+    //- 특정 날짜의 활동 기록 페이지 조회
     @GetMapping("/lifeTracker/new/{targetDate}/{userId}")
-    public String newActivities(@PathVariable Long userId,
+    public String todayActivities(@PathVariable Long userId,
                                 @PathVariable LocalDate targetDate,
                                 Model model,
                                 RedirectAttributes rttr) {
@@ -70,15 +70,23 @@ public class TrackController {
         return "/new";
     }
 
-    //- 활동 기록 페이지: 데이터 추가
+    // 특정 날짜의 활동 기록 저장 요청
+    // 주의) url날짜가 아닌, 저장되는 날짜가 targetDate가 됨.
     @PostMapping("/lifeTracker/new/{targetDate}/{userId}")
     public String create(DailyTrackWriteForm form,
                          @PathVariable LocalDate targetDate,
-                         @PathVariable Long userId) {
-        log.info("form데이터 추가 요청: {}", form.toString());
+                         @PathVariable Long userId,
+                         Model model,
+                         RedirectAttributes rttr) {
+        log.info("활동 기록 form 데이터 저장 요청: {}", form.toString());
         Activities activities = form.toEntity();
-        log.info("시간 데이터의 타입(Long이어야함): {}", activities.getAcStart().getClass());
-        return "";
+        targetDate = activities.getTargetDate();
+        List<DailyTrackReadForm> dailyTrackReadFormList = trackReadService.targetDateIndex(targetDate, userId);
+        model.addAttribute("userId", userId);
+        model.addAttribute("targetDate", targetDate);
+        model.addAttribute("DailyTrackReadFormList", dailyTrackReadFormList);
+        rttr.addAttribute("targetDate", targetDate);
+        return "/new";
     }
 
     //- 활동 기록 페이지: 데이터 수정/삭제(수정 시 전체 덮어씌우기 예정)
