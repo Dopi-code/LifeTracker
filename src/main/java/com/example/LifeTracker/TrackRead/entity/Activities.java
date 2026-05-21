@@ -22,7 +22,7 @@ public class Activities {
     @Column(nullable = false)
     private Long userId;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long ctgId;
 
     @Column(nullable = true)

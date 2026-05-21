@@ -59,14 +59,12 @@ public class TrackController {
     @GetMapping("/lifeTracker/new/{targetDate}/{userId}")
     public String todayActivities(@PathVariable Long userId,
                                 @PathVariable LocalDate targetDate,
-                                Model model,
-                                RedirectAttributes rttr) {
+                                Model model) {
         List<DailyTrackReadForm> dailyTrackReadFormList = trackReadService.targetDateIndex(targetDate, userId);
         model.addAttribute("userId", userId);
         model.addAttribute("targetDate", targetDate);
         model.addAttribute("DailyTrackReadFormList", dailyTrackReadFormList);
         log.info("new 뷰 페이지 호출");
-        rttr.addAttribute("targetDate", targetDate);
         return "/new";
     }
 
@@ -76,16 +74,16 @@ public class TrackController {
     public String create(DailyTrackWriteForm form,
                          @PathVariable LocalDate targetDate,
                          @PathVariable Long userId,
-                         Model model,
-                         RedirectAttributes rttr) {
+                         Model model) {
         log.info("활동 기록 form 데이터 저장 요청: {}", form.toString());
         Activities activities = form.toEntity();
+        Activities saved = trackWriteRepository.save(activities);
         targetDate = activities.getTargetDate();
+
         List<DailyTrackReadForm> dailyTrackReadFormList = trackReadService.targetDateIndex(targetDate, userId);
         model.addAttribute("userId", userId);
         model.addAttribute("targetDate", targetDate);
         model.addAttribute("DailyTrackReadFormList", dailyTrackReadFormList);
-        rttr.addAttribute("targetDate", targetDate);
         return "/new";
     }
 
