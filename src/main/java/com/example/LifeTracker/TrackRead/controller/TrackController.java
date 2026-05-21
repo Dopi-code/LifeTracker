@@ -70,15 +70,15 @@ public class TrackController {
 
     // 특정 날짜의 활동 기록 저장 요청
     // 주의) url날짜가 아닌, 저장되는 날짜가 targetDate가 됨.
-    @PostMapping("/lifeTracker/new/{targetDate}/{userId}")
+    @PostMapping("/lifeTracker/new/{Date}/{userId}")
     public String create(DailyTrackWriteForm form,
-                         @PathVariable LocalDate targetDate,
+                         @PathVariable LocalDate Date,
                          @PathVariable Long userId,
                          Model model) {
         log.info("활동 기록 form 데이터 저장 요청: {}", form.toString());
         Activities activities = form.toEntity();
         Activities saved = trackWriteRepository.save(activities);
-        targetDate = activities.getTargetDate();
+        LocalDate targetDate = saved.getTargetDate();
 
         List<DailyTrackReadForm> dailyTrackReadFormList = trackReadService.targetDateIndex(targetDate, userId);
         model.addAttribute("userId", userId);
