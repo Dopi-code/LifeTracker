@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 // 서비스: 정보를 처리하는 공간
 @Service
@@ -35,5 +36,18 @@ public class TrackReadService {
         return activities.stream()
                 .map(DailyTrackReadForm::new)
                 .toList();
+    }
+
+    // 활동 기록 중 '주/월'에 맞는 날짜가 매칭되지 않은 데이터들을 선별해 알맞는 날짜로 저장한다.
+    // 예를 들어 5/4, 5/5, 5/6 날의 데이터는 "활동 이름" + [주간]0504 / [월간]0501로 묶인다.
+    // 만약 [주간]0504데이터가 처음이라면 새로운 데이터로 저장된다.
+    // 만약 [주간]0504데이터가 이미 있었다면, 주간 총 활동시간을 더한 값으로 수정한다.
+    public String calculateData(Long userId) {
+        List<Activities> t = trackReadRepository.findByUserIdAndWeekIdIsNull(userId);
+        log.info("미정렬 주간 데이터 추출: {}", t);
+        // 개별 데이터에 맞는 주간 값 찾기
+        // 해당 값으로 변경
+        // 수정된 값 DB에 저장
+        return null;
     }
 }

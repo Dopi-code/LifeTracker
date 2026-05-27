@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface TrackReadRepository extends JpaRepository<Activities, Long> {
     List<Activities> findByUserIdAndTargetDate(Long userId, LocalDate targetDate);
+    List<Activities> findByUserIdAndWeekIdIsNull(Long userId);
 }
