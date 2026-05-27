@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.data.web.ProjectedPayload;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -88,7 +89,7 @@ public class TrackController {
     }
 
     //- 활동 기록 페이지: 데이터 수정/삭제(수정 시 전체 덮어씌우기 예정)
-    // 통계 페이지
+    // 통계 페이지 조회
     @GetMapping("/lifeTracker/stats/{targetDate}/{userId}")
     public String stats(@PathVariable Long userId,
                         @PathVariable LocalDate targetDate,
@@ -99,11 +100,12 @@ public class TrackController {
     }
 
     // 통계내기 요청
-    @PostMapping("/lifeTracker/stats/{targetDate}/{userId}")
+    @PostMapping("/lifeTracker/stats/calculate/{targetDate}/{userId}")
     public String getStats(@PathVariable Long userId,
-                           @PathVariable LocalDate targetDate,
-                           Model model) {
-        log.info("통계내기");
-        return null;
+                           @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate targetDate) {
+        log.info("통계내기 시도 중");
+        // DB에서 통계되지 않은 데이터를 가져오기
+        // 데이터들을 통계내기
+        return "redirect:/lifeTracker/stats/" + targetDate + "/" + userId;
     }
 }
