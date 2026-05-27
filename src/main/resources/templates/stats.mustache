@@ -1,4 +1,19 @@
 {{>layouts/header}}
 <!--Content-->
 <h1>라이프 트래커 통계창에 오신것을 환영합니다!</h1>
+
+<div class="form-box">
+    <h3 class="text-center mb-4">활동 통계</h3>
+    {{#targetDate}}
+    <form action="/lifeTracker/stats/{{targetDate}}/{{userId}}" method="post">
+    {{/targetDate}}
+    <div class="form-group-custom">
+        <label>날짜</label>
+        <input type="date" class="form-control" name="targetDate">
+    </div>
+    <button type="submit" class="btn btn-submit mt-3">통계 내기</button>
+</form>
+    {{#targetDate}}
+    <a href="/lifeTracker/new/{{targetDate}}/{{userId}}" class="btn btn-outline-secondary w-100 mt-4" style="background-color: #ffe4e1;">기록 추가하러 가기</a>
+    {{/targetDate}}
 {{>layouts/footer}}

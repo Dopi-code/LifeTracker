@@ -97,4 +97,13 @@ public class TrackController {
         model.addAttribute("targetDate", targetDate);
         return "/stats";
     }
+
+    // 통계내기 요청
+    @PostMapping("/lifeTracker/stats/{targetDate}/{userId}")
+    public String getStats(@PathVariable Long userId,
+                           @PathVariable LocalDate targetDate,
+                           Model model) {
+        log.info("통계내기");
+        return null;
+    }
 }
