@@ -6,10 +6,13 @@ import com.example.LifeTracker.TrackRead.repository.TrackReadRepository;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.temporal.WeekFields;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 // 서비스: 정보를 처리하는 공간
@@ -43,11 +46,21 @@ public class TrackReadService {
     // 만약 [주간]0504데이터가 처음이라면 새로운 데이터로 저장된다.
     // 만약 [주간]0504데이터가 이미 있었다면, 주간 총 활동시간을 더한 값으로 수정한다.
     public String calculateData(Long userId) {
-        List<Activities> t = trackReadRepository.findByUserIdAndWeekIdIsNull(userId);
-        log.info("미정렬 주간 데이터 추출: {}", t);
-        // 개별 데이터에 맞는 주간 값 찾기
-        // 해당 값으로 변경
-        // 수정된 값 DB에 저장
+        List<Activities> list = trackReadRepository.findByUserIdAndWeekIdIsNull(userId);
+        log.info("미정렬 주간 데이터 추출: {}", list);
+        for (int i=0; i < list.size(); i++) {
+            // 개별 데이터에 맞는 주간/월간 값 찾기 (weekFields & monthFields)
+            LocalDate targetDate = list.get(i).getTargetDate();
+            WeekFields weekFields = WeekFields.of(Locale.getDefault());
+            int calendarWeek = targetDate.get(weekFields.weekOfMonth()); // 20260506 => 1(주차)
+            int calendarMonth = targetDate.getMonthValue(); // 20260506 => 5(월)
+            log.info("지금 나온 데이터는 {}월 {}주차 데이터 입니다.", calendarMonth, calendarWeek);
+            // 해당 주의 값에 반영
+
+            // 해당 달의 값에 반영
+
+            // 수정된 값 DB에 저장
+        }
         return null;
     }
 }
