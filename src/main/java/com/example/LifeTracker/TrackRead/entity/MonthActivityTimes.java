@@ -3,14 +3,14 @@ package com.example.LifeTracker.TrackRead.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-// 주간 활동 기록 합산
+// 월간 활동 기록 합산
 @Entity
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class WeekActivityTimes {
+public class MonthActivityTimes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,13 +18,13 @@ public class WeekActivityTimes {
     @Column
     private Long userId;
 
-    // 소문자 뒤에 대문자가 딱 한 글자만 남는 경우 weekn으로 변환해버림(SpringBoot특징)
-    @Column(name = "week_n")
-    private Long weekN;
+    // 소문자 뒤에 대문자가 딱 한 글자만 남는 경우 monthn으로 변환해버림(SpringBoot특징)
+    @Column(name = "month_n")
+    private Long monthN;
 
     @Column
-    private String weekAcName;
+    private String monthAcName;
 
     @Column
-    private Long weekAcTotal;
+    private Long monthAcTotal;
 }
