@@ -34,12 +34,13 @@ public class TrackController {
     @Autowired
     TrackWriteRepository trackWriteRepository;
 
-    //- 메인으로 날짜 정보와 함께 redirect 선택 화면
+    // 날짜가 없을 경우: 메인창
     // Redirect 시 날짜 형식을 통일하기 위해 String 타입으로 특정함(예외적).
     @GetMapping("/lifeTracker/main/{userId}")
     public String mainPageRedirect(@PathVariable Long userId,
                                    RedirectAttributes rttr) {
         String targetDate = LocalDate.now().toString();
+        log.info("날짜 정보 없이 main페이지 요청 시도.");
         log.info("main페이지로 리다이렉트 시도. 날짜: {}, 유저ID: {}", targetDate, userId);
         rttr.addAttribute("targetDate", targetDate);
         rttr.addAttribute("userId", userId);

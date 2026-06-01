@@ -2,17 +2,22 @@
 INSERT INTO activities (user_id, week_id, month_id, ctg_id, ac_name, ac_start, ac_end, target_date, ac_color) VALUES
 -- 1주차 (1일~7일)
 (1, null, null, 1, '공부', 0700, 0800, '2026-05-01', '#FFA07A'),
-(1, null, 5, 2, '운동', 0900, 0950, '2026-05-01', '#FF7F50'),
+(1, null, null, 2, '운동', 0900, 0950, '2026-05-02', '#FF7F50'),
+(1, null, null, 2, '운동', 0900, 0950, '2026-05-03', '#FF7F50'),
+(1, null, null, 2, '운동', 0900, 0950, '2026-05-04', '#FF7F50'),
+(1, null, null, 2, '운동', 0900, 0950, '2026-05-05', '#FF7F50'),
+(1, null, null, 2, '운동', 0900, 0950, '2026-05-06', '#FF7F50'),
+(1, null, null, 2, '운동', 0900, 0950, '2026-05-07', '#FF7F50'),
+
 (2, 1, 5, 2, '아침 조깅', 0700, 0800, '2026-05-02', '#FF7F50'),
 (1, 1, 5, 1, '공부', 0100, 0500, '2026-05-02', '#ADD8E6'),
 (3, 1, 5, 5, '소설 ''모순'' 읽기', 2100, 2230, '2026-05-03', '#FFD700'),
 (4, 1, 5, 4, 'HTML/CSS 레이아웃 수정', 1400, 1600, '2026-05-04', '#87CEEB'),
 (5, 1, 5, 3, '남산 둘레길 산책', 1000, 1200, '2026-05-05', '#4682B4'),
 (1, 1, 5, 6, '취미생활', 1200, 1800, '2026-05-06', '#6495ED'),
-(2, 1, 5, 1, '영단어 100개 암기', 2200, 2300, '2026-05-07', '#DA70D6'),
 
 -- 2주차 (8일~14일)
-(1, null, 5, 2, '공부', 1800, 1930, '2026-05-08', '#98FB98'), -- 오늘!
+(1, null, null, 2, '공부', 1800, 1930, '2026-05-08', '#98FB98'), -- 오늘!
 (3, 2, 5, 4, '백엔드 API 명세 작성', 1000, 1200, '2026-05-09', '#3CB371'),
 (4, 2, 5, 5, '기술 블로그 포스팅', 2000, 2130, '2026-05-10', '#7FFFD4'),
 (5, 2, 5, 3, '한강 자전거 라이딩', 1500, 1700, '2026-05-11', '#ADD8E6'),
@@ -23,19 +28,19 @@ INSERT INTO activities (user_id, week_id, month_id, ctg_id, ac_name, ac_start, a
 -- 3주차 (15일~21일)
 (4, 3, 5, 1, '스프링 부트 시큐리티 학습', 1400, 1700, '2026-05-15', '#F0E68C'),
 (5, 3, 5, 5, '경제 뉴스레터 읽기', 0800, 0830, '2026-05-16', '#DDA0DD'),
-(1, null, 5, 3, '반려견과 동네 산책', 1700, 1800, '2026-05-17', '#DB7093'),
+(1, null, null, 3, '반려견과 동네 산책', 1700, 1800, '2026-05-17', '#DB7093'),
 (2, 3, 5, 4, 'React 컴포넌트 분리 작업', 2100, 2300, '2026-05-18', '#40E0D0'),
 (3, 3, 5, 2, '하체 근력 운동', 0700, 830, '2026-05-19', '#C0C0C0'),
 (4, 3, 5, 6, '방 대청소', 1000, 1200, '2026-05-20', '#708090'),
 (5, 3, 5, 1, '일본어 회화 연습', 2200, 2300, '2026-05-21', '#708090'),
 
 -- 4주차 (22일~28일)
-(1, 4, 5, 4, '개인 프로젝트 배포 테스트', 1500, 1800, '2026-05-22', '#F0E68C'),
+(1, 4, null, 4, '개인 프로젝트 배포 테스트', 1500, 1800, '2026-05-22', '#F0E68C'),
 (2, 4, 5, 5, '자기계발서 탐독', 2300, 2359, '2026-05-23', '#F0E68C'),
 (3, 4, 5, 3, '인왕산 야간 등산', 1900, 2100, '2026-05-24', '#DDA0DD'),
 (4, 4, 5, 1, '운영체제 프로세스 학습', 1100, 1300, '2026-05-25', '#708090'),
 (5, 4, 5, 2, '수영 강습', 0600, 0700, '2026-05-26', '#DB7093'),
-(1, 4, 5, 6, '친구 생일 파티', 1800, 2100, '2026-05-27', '#DB7093'),
+(1, 4, null, 6, '친구 생일 파티', 1800, 2100, '2026-05-27', '#DB7093'),
 (2, 4, 5, 4, '코드 리팩토링 및 주석 작성', 1400, 1600, '2026-05-28', '#40E0D0'),
 
 -- 5주차 (29일~30일)
@@ -43,24 +48,24 @@ INSERT INTO activities (user_id, week_id, month_id, ctg_id, ac_name, ac_start, a
 (4, 5, 5, 3, '주말 맞이 교외 드라이브', 1300, 1700, '2026-05-30', '#708090');
 -- --------------------MonthActivityTimes 샘플 데이터----------------------------
 -- 4월 데이터 (2개)
-INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 4, '취미생활', 28);
-INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 4, '운동', 20);
+INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 4, '취미생활', 1990);
+INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 4, '운동', 400);
 -- 5월 데이터 (3개)
-INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 5, '운동', 22);
-INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 5, '공부', 40);
-INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 5, '취미생활', 38);
+INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 5, '운동', 2000);
+INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 5, '공부', 1000);
+INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 5, '취미생활', 1660);
 -- 6월 데이터 (2개)
-INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 6, '운동', 31);
-INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 6, '공부', 27);
+INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 6, '운동', 800);
+INSERT INTO month_activity_times (user_id, month_n, month_ac_name, month_ac_total) VALUES (1, 6, '공부', 270);
 
 -- --------------------WeekActivityTimes 샘플 데이터----------------------------
-INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total) VALUES (1, 1, '공부', 12);
-INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total)VALUES (1, 1, '운동', 5);
-INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total) VALUES (1, 1, '취미생활', 3);
-INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total) VALUES (1, 2, '공부', 15);
-INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total) VALUES (1, 2, '운동', 8);
-INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total)VALUES (1, 3, '공부', 10);
-INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total)VALUES (1, 3, '취미생활', 7);
-INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total) VALUES (1, 4, '공부', 14);
-INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total) VALUES (1, 4, '운동', 4);
-INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total) VALUES (1, 4, '취미생활', 2);
+INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total, monthN) VALUES (1, 1, '공부', 12,4);
+INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total, monthN) VALUES (1, 1, '운동', 5,4);
+INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total, monthN) VALUES (1, 1, '취미생활', 3,4);
+INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total, monthN) VALUES (1, 2, '공부', 15,5);
+INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total, monthN) VALUES (1, 2, '운동', 8,5);
+INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total, monthN) VALUES (1, 3, '공부', 10,5);
+INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total, monthN) VALUES (1, 3, '취미생활', 7,5);
+INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total, monthN) VALUES (1, 4, '공부', 14,5);
+INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total, monthN) VALUES (1, 4, '운동', 4,5);
+INSERT INTO week_activity_times (user_id, week_n, week_ac_name, week_ac_total, monthN) VALUES (1, 4, '취미생활', 2,6);

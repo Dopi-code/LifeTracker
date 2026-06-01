@@ -29,10 +29,10 @@ public class Activities {
     private String acName;
 
     @Column(nullable = false)
-    private Long acStart;
+    private Long acStart; // 1010
 
     @Column(nullable = false)
-    private Long acEnd;
+    private Long acEnd;  // 1030
 
     @Column(nullable = false)
     private LocalDate targetDate;

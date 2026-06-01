@@ -27,4 +27,7 @@ public class WeekActivityTimes {
 
     @Column
     private Long weekAcTotal;
+
+    @Column
+    private Long monthN;
 }

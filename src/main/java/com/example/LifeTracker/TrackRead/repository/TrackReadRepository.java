@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface TrackReadRepository extends JpaRepository<Activities, Long> {
     List<Activities> findByUserIdAndTargetDate(Long userId, LocalDate targetDate);
-    List<Activities> findByUserIdAndWeekIdIsNull(Long userId);
+    // MonthId가 Null인 데이터는 WeekId도 Null일 것이라고 상정.
+    List<Activities> findByUserIdAndMonthIdIsNull(Long userId);
 }
